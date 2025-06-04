@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - "9000:9000"  # 網頁管理介面
+      - "9443:9443"  # HTTPS（可選）
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # 存取 Docker
+      - portainer_data:/data  # 儲存 Portainer 資料
+
+volumes:
+  portainer_data:
